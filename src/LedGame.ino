@@ -37,6 +37,7 @@ void setup(void)
 
   pinMode(A1,OUTPUT);
   pinMode(buttonPin,INPUT);
+  randomSeed(analogRead(0));
 }
 
 void loop()
@@ -114,6 +115,7 @@ void LightsController(long delaySeconds)
   digitalWrite(ledPins[currentLed],HIGH);
   if(currentMillis  - previousMillis1 > delaySeconds)
   {
+
     previousMillis1 = currentMillis;
     digitalWrite(ledPins[currentLed],LOW);
     if(currentLed <= 7 && countingUp == 1)
@@ -146,7 +148,7 @@ void LightsController(long delaySeconds)
  */
 void Reset(void)
 {
-    currentLed = 0;
+    currentLed = random(0,7);
     lives = 3;
     gameSpeed = 500;
     for(int i = 0; i < ledCount; i++)
